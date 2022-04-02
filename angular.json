@@ -3,5 +3,37 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "angular-reactive-utils": {
+      "projectType": "library",
+      "root": "projects/angular-reactive-utils",
+      "sourceRoot": "projects/angular-reactive-utils/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/angular-reactive-utils/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/angular-reactive-utils/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/angular-reactive-utils/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-reactive-utils/src/test.ts",
+            "tsConfig": "projects/angular-reactive-utils/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-reactive-utils/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "angular-reactive-utils"
 }
