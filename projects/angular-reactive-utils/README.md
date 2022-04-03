@@ -26,7 +26,18 @@ Library with utility methods for reactive abstract controls
 Build mapping for abstract control with all validation errors present
 - `abstractControlErrors(abstractControl: AbstractControl): AbstractControlErrors`
 
-Scenarios:
+Retrieve the FormGroup from context when the children component is being mounted
+- `form(parentForm: FormGroupDirective, controlContainer: ControlContainer): FormGroup`
+  Avoid passing around the FormGroup for your component on Input() and retrieve it from its propagation context
+
+Patch abstract control with data provided but ignoring form arrays
+- `patchIgnoreArray(abstractControl: AbstractControl, data: any | null): void`
+
+Reset abstract control values but ignoring form arrays
+- `resetIgnoreArray(abstractControl: AbstractControl): void`
+
+# Examples
+## AbstractControlsService.abstractControlErrors
 - Simple Form Control
   ```typescript
   const control = this.fb.control(0, [Validators.required, Validators.min(1)]);
