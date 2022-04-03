@@ -18,13 +18,17 @@ export class AbstractControlsService {
    */
   abstractControlErrors(abstractControl: AbstractControl): AbstractControlErrors {
     const errors = this.abstractControlsErrors(abstractControl);
+    if (!Array.isArray(errors)) return errors;
     const filtered = errors.filter((error: any) => Object.keys(error).length);
     return filtered.reduce((acc: any, item: AbstractControlError) => {
       const { name, error } = item;
       const i18n = `errors.${error}`;
-      const i18nFullPath = `errors.${error}.${name}`;
-      const model = Object.assign({}, item, { i18n, i18nFullPath });
-      if (name) return Object.assign(acc, { [name]: model });
+      const model = Object.assign({}, item, { i18n });
+      if (name) {
+        const i18nFullPath = `errors.${error}.${name}`;
+        Object.assign(model, { i18nFullPath });
+        return Object.assign(acc, { [name]: model });
+      }
       return Object.assign(acc, model);
     }, {});
   }
@@ -122,9 +126,9 @@ export class AbstractControlsService {
       }, []).flat();
     }
     if (abstractControl instanceof FormArray) {
-      return abstractControl.controls.map(control => {
-        return this.abstractControlsErrors(control, name);
-      });
+      return abstractControl.controls.map((control, index) => {
+        return this.abstractControlsErrors(control, [name, index].filter(i => i != null).join('.'));
+      }).flat();
     }
     return [];
   }
