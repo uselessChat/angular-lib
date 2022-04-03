@@ -1,24 +1,22 @@
-# AngularReactiveUtils
+# Angular Reactive Utils
+Library with utility methods for reactive abstract controls
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+# Data Types
+**AbstractControlError**
+| Property | Description |
+| :------------- | :------------- |
+| name? | Abstract Control path when using a FormGroup, otherwise is null |
+| control | Abstract Control source |
+| error | Validation error name (e.g. 'required'). Will only be the first one found |
+| value | Validation error details (e.g. `{min: 1, current: 0}`)
 
-## Code scaffolding
+**AbstractControlErrorI18n** extends **AbstractControlError**
+| Property | Description |
+| :------------- | :------------- |
+| i18n | Aimed to found the JSON path on i18n file for validation error (e.g. 'errors.required')|
+| i18nFullPath | Full path based on the Form Group control names (e.g. 'errors.required.address')
 
-Run `ng generate component component-name --project angular-reactive-utils` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-reactive-utils`.
-> Note: Don't forget to add `--project angular-reactive-utils` or else it will be added to the default project in your `angular.json` file. 
-
-## Build
-
-Run `ng build angular-reactive-utils` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build angular-reactive-utils`, go to the dist folder `cd dist/angular-reactive-utils` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test angular-reactive-utils` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**AbstractControlErrors**: i18n errors mapping
+| Property | Description |
+| :------------- | :------------- |
+| [key: string] | Value with type AbstractControlErrorI18n |
