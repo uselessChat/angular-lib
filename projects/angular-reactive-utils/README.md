@@ -23,18 +23,14 @@ Library with utility methods for reactive abstract controls
 
 # API
 ## AbstractControlsService
-Build mapping for abstract control with all validation errors present
 - `abstractControlErrors(abstractControl: AbstractControl): AbstractControlErrors`
-
-Retrieve the FormGroup from context when the children component is being mounted
+  Build mapping for abstract control with all validation errors present
 - `form(parentForm: FormGroupDirective, controlContainer: ControlContainer): FormGroup`
   Avoid passing around the FormGroup for your component on Input() and retrieve it from its propagation context
-
-Patch abstract control with data provided but ignoring form arrays
 - `patchIgnoreArray(abstractControl: AbstractControl, data: any | null): void`
-
-Reset abstract control values but ignoring form arrays
+  Patch abstract control with data provided but ignoring form arrays
 - `resetIgnoreArray(abstractControl: AbstractControl): void`
+  Reset abstract control values but ignoring form arrays
 
 # Examples
 ## AbstractControlsService.abstractControlErrors
